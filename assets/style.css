@@ -64,3 +64,54 @@ main {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+pre {
+  background: #2d2d2d;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+/*
+.slide img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  position: relative;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse closest-side, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(ellipse closest-side, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+  mask-composite: intersect;
+  -webkit-mask-composite: destination-in;
+  transition: transform 0.3s ease;
+}
+
+.slide img:hover {
+  transform: scale(1.02);
+}
+*/
+
+.slide img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  position: relative;
+  z-index: 1;
+  mask-image: 
+    linear-gradient(to top,    transparent 0%, black 10%, black 80%, transparent 100%),
+    linear-gradient(to left,   transparent 0%, black 10%, black 80%, transparent 100%);
+  -webkit-mask-image: 
+    linear-gradient(to top,    transparent 0%, black 10%, black 80%, transparent 100%),
+    linear-gradient(to left,   transparent 0%, black 10%, black 80%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-composite: destination-in;
+  transition: transform 0.3s ease;
+}
+
+.slide img:hover {
+  transform: scale(1.02);
+}
+
+

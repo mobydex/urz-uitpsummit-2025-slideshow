@@ -44,7 +44,15 @@
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === index);
     });
+
     resetProgress();
+
+    // Re-highlight after visibility change
+    /*
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+    */
   }
 
   function nextSlide() {

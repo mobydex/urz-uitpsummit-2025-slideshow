@@ -1,5 +1,6 @@
 title: My Slideshow Site
 markdown: kramdown
+highlighter: rouge
 collections:
   slides:
     output: true
