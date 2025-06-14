@@ -1,5 +1,7 @@
-# FAIR Data Management
+# 🪟 FAIR Open Data
 
-* Data Pipelines that archive snapshots
+* 🔁 Derived from Open Data → Shared as FAIR Data
+* 🔗 RDF-based tech stack to easily combine data
+* 🏷️ Metadata described with the DCAT (Data Catalog) vocabulary
 
 
