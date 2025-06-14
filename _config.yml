@@ -1,0 +1,5 @@
+title: My Slideshow Site
+markdown: kramdown
+collections:
+  slides:
+    output: true

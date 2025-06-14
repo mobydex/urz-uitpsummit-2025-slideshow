@@ -1,0 +1,108 @@
+<div class="slideshow">
+  {% assign slides = site.slides | sort: 'title' %}
+  {% for slide in slides %}
+    <div class="slide{% if forloop.first %} active{% endif %}" id="slide-{{ forloop.index }}">
+      {{ slide.content | markdownify }}
+    </div>
+  {% endfor %}
+
+  <div class="slide-navigation">
+    <button onclick="prevSlide()">Previous</button>
+    <button id="playPauseBtn" onclick="togglePlay()">Pause</button>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <div class="progress-circle" id="progressCircle">
+    <svg width="60" height="60">
+      <circle cx="30" cy="30" r="26" stroke="#333" stroke-width="4" fill="none"/>
+      <circle id="progressArc" cx="30" cy="30" r="26" stroke="#00ffe1" stroke-width="4" fill="none"
+              stroke-dasharray="163.36281798666926" stroke-dashoffset="163.36281798666926" />
+    </svg>
+  </div>
+</div>
+
+<style>
+.progress-circle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+</style>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  let isPlaying = true;
+  const duration = 15000;
+  let timer, progressTimer;
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const progressArc = document.getElementById('progressArc');
+  const progressCircle = document.getElementById('progressCircle');
+  const arcLength = 2 * Math.PI * 26;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+    resetProgress();
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function startTimer() {
+    timer = setInterval(nextSlide, duration);
+    animateProgress();
+    progressCircle.style.display = 'block';
+  }
+
+  function stopTimer() {
+    clearInterval(timer);
+    cancelAnimationFrame(progressTimer);
+    progressCircle.style.display = 'none';
+  }
+
+  function togglePlay() {
+    if (isPlaying) {
+      stopTimer();
+      playPauseBtn.textContent = "Play";
+    } else {
+      startTimer();
+      playPauseBtn.textContent = "Pause";
+    }
+    isPlaying = !isPlaying;
+  }
+
+  function animateProgress() {
+    let start = null;
+    const animate = (timestamp) => {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      const progress = Math.min(elapsed / duration, 1);
+      progressArc.style.strokeDashoffset = arcLength * (1 - progress);
+
+      if (progress < 1 && isPlaying) {
+        progressTimer = requestAnimationFrame(animate);
+      }
+    };
+    progressArc.style.strokeDashoffset = arcLength;
+    progressTimer = requestAnimationFrame(animate);
+  }
+
+  function resetProgress() {
+    cancelAnimationFrame(progressTimer);
+    if (isPlaying) {
+      animateProgress();
+    }
+  }
+
+  showSlide(currentSlide);
+  startTimer();
+</script>

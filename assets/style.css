@@ -1,0 +1,66 @@
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: #0e0e0e;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+main {
+  padding: 2rem;
+}
+
+.slideshow {
+  position: relative;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #1c1c1c;
+  border: 2px solid #00ffe1;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 225, 0.2);
+}
+
+.slide {
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide h1, .slide h2, .slide h3 {
+  color: #00ffe1;
+}
+
+.slide p {
+  font-size: 1.1rem;
+}
+
+.slide-navigation {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.slide-navigation button {
+  background: #00ffe1;
+  border: none;
+  color: #0e0e0e;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin: 0 0.5rem;
+}
+
+.slide-navigation button:hover {
+  background: #00bfae;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
