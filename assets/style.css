@@ -115,3 +115,14 @@ pre {
 }
 
 
+
+.logo {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 400px;
+  height: auto;
+  filter: invert(100%) brightness(200%);
+  z-index: 1000;
+}
+
