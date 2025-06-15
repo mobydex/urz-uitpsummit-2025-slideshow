@@ -100,22 +100,36 @@ pre {
   border-radius: 16px;
   position: relative;
   z-index: 1;
+/*
   mask-image: 
     linear-gradient(to top,    transparent 0%, black 10%, black 80%, transparent 100%),
     linear-gradient(to left,   transparent 0%, black 10%, black 80%, transparent 100%);
   -webkit-mask-image: 
     linear-gradient(to top,    transparent 0%, black 10%, black 80%, transparent 100%),
     linear-gradient(to left,   transparent 0%, black 10%, black 80%, transparent 100%);
+*/
+  -webkit-mask-image:
+    linear-gradient(to top,    transparent, black 10px),
+    linear-gradient(to bottom, transparent, black 10px),
+    linear-gradient(to left,   transparent, black 10px),
+    linear-gradient(to right,  transparent, black 10px);
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  mask-image:
+    linear-gradient(to top,    transparent, black 10px),
+    linear-gradient(to bottom, transparent, black 10px),
+    linear-gradient(to left,   transparent, black 10px),
+    linear-gradient(to right,  transparent, black 10px);
+/*
   mask-composite: intersect;
   -webkit-mask-composite: destination-in;
+*/
   transition: transform 0.3s ease;
 }
 
 .slide img:hover {
   transform: scale(1.02);
 }
-
-
 
 .logo {
   position: absolute;
